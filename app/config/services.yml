@@ -1,0 +1,20 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+services:
+  app.bundle.doctrineFilmRepository:
+      class: Doctrine\ORM\EntityRepository
+      factory: ["@doctrine.orm.entity_manager", getRepository]
+      arguments: ["FilmBundle:Film"]
+
+  app.bundle.doctrineActorRepository:
+      class: Doctrine\ORM\EntityRepository
+      factory: ["@doctrine.orm.entity_manager", getRepository]
+      arguments: ["FilmBundle:Actor"]
+
+  app.component.createFilm:
+      class: MyApp\Component\Film\Application\CommandHandlers\Film\CreateFilm
+      arguments: ["@app.bundle.doctrineFilmRepository", "@app.bundle.doctrineActorRepository"]
+
+  app.component.createActor:
+      class: MyApp\Component\Film\Application\CommandHandlers\Actor\CreateActor
+      arguments: ["@app.bundle.doctrineActorRepository"]

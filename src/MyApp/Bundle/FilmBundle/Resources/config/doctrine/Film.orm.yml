@@ -1,0 +1,39 @@
+MyApp\Component\Film\Domain\Film:
+    type: entity
+    repositoryClass: MyApp\Bundle\FilmBundle\Film\Repository\DoctrineFilmRepository
+    table: film
+    id:
+        idfilm:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+
+    manyToMany:
+        actors:
+            targetEntity: Actor
+            joinTable:
+              name: actorsInFilm
+              joinColumns:
+                idfilm:
+                  referencedColumnName: idfilm
+              inverseJoinColumns:
+                idactor:
+                  referencedColumnName: idactor
+    lifecycleCallbacks: {  }
