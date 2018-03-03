@@ -30,4 +30,9 @@ class DoctrineFilmRepository extends EntityRepository implements FilmRepository
 
         return $film;
     }
+
+    public function findAllFilms(): array
+    {
+        return $this->findAll();
+    }
 }

@@ -19,6 +19,10 @@ services:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\UpdateFilm
       arguments: ["@app.bundle.doctrineFilmRepository", "@app.bundle.doctrineActorRepository"]
 
+  app.component.listFilm:
+      class: MyApp\Component\Film\Application\CommandHandlers\Film\ListFilm
+      arguments: ["@app.bundle.doctrineFilmRepository"]
+
   app.component.createActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\CreateActor
       arguments: ["@app.bundle.doctrineActorRepository"]

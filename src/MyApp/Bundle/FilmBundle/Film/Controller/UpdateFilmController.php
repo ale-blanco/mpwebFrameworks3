@@ -5,8 +5,8 @@ namespace MyApp\Bundle\FilmBundle\Film\Controller;
 use MyApp\Component\Film\Application\Commands\Film\UpdateFilmComm;
 use MyApp\Component\Film\Domain\Exception\ValidationException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UpdateFilmController extends Controller
@@ -29,6 +29,6 @@ class UpdateFilmController extends Controller
             throw new HttpException(500, json_encode(['error' => $ex->getMessage()]));
         }
 
-        return new Response(json_encode($filmCreated), 200);
+        return new JsonResponse($filmCreated);
     }
 }

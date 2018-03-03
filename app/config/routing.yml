@@ -12,6 +12,11 @@ film_update:
   defaults: { _controller: \MyApp\Bundle\FilmBundle\Film\Controller\UpdateFilmController::execute }
   methods: [PUT]
 
+film_list:
+  path: /film/
+  defaults: { _controller: \MyApp\Bundle\FilmBundle\Film\Controller\ListFilmController::execute }
+  methods: [GET]
+
 
 actor_create:
   path: /actor/
