@@ -7,5 +7,6 @@ use MyApp\Component\Film\Domain\Film;
 interface FilmRepository
 {
     public function save(Film $film): void;
-    public function findOneByName(Film $film): ?Film;
+    public function findByName(Film $film): array;
+    public function findOneByIdOrException(string $id): Film;
 }

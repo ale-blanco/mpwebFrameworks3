@@ -4,31 +4,26 @@ namespace MyApp\Component\Film\Application\CommandHandlers\Film;
 
 use MyApp\Component\Film\Application\Commands\Film\CreateFilmComm;
 use MyApp\Component\Film\Domain\Exception\ExistFilmWithNameException;
-use MyApp\Component\Film\Domain\Exception\NotAllActorsExistException;
 use MyApp\Component\Film\Domain\Film;
 use MyApp\Component\Film\Domain\Repository\ActorRepository;
 use MyApp\Component\Film\Domain\Repository\FilmRepository;
 
-class CreateFilm
+class CreateFilm extends GetActorsAbstract
 {
     private $filmRepository;
-    private $actorRepository;
 
     public function __construct(FilmRepository $filmRepository, ActorRepository $actorRepository)
     {
+        parent::__construct($actorRepository);
         $this->filmRepository = $filmRepository;
-        $this->actorRepository = $actorRepository;
     }
 
     public function __invoke(CreateFilmComm $command): Film
     {
-        $actors = $this->actorRepository->findByIds($command->getActorIds());
-        if (count($actors) !== count($command->getActorIds())) {
-            throw new NotAllActorsExistException();
-        }
+        $actors = $this->getActors($command->getActorIds());
 
         $film = new Film($command->getName(), $command->getDescription(), $actors);
-        if ($this->filmRepository->findOneByName($film) !== null) {
+        if (count($this->filmRepository->findOneByName($film)) > 0) {
             throw new ExistFilmWithNameException();
         }
 

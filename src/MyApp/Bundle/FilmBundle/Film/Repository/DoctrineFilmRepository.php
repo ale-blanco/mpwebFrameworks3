@@ -3,6 +3,7 @@
 namespace MyApp\Bundle\FilmBundle\Film\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use MyApp\Component\Film\Domain\Exception\FilmNotExistException;
 use MyApp\Component\Film\Domain\Film;
 use MyApp\Component\Film\Domain\Repository\FilmRepository;
 
@@ -15,8 +16,18 @@ class DoctrineFilmRepository extends EntityRepository implements FilmRepository
         $em->flush();
     }
 
-    public function findOneByName(Film $film): ?Film
+    public function findByName(Film $film): array
     {
-        return $this->findOneBy(['name' => $film->getName()]);
+        return $this->findBy(['name' => $film->getName()]);
+    }
+
+    public function findOneByIdOrException(string $id): Film
+    {
+        $film = $this->findOneBy(['idfilm' => $id]);
+        if ($film == null) {
+            throw new FilmNotExistException();
+        }
+
+        return $film;
     }
 }
