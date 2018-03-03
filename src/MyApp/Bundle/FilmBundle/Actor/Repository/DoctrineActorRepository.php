@@ -24,4 +24,9 @@ class DoctrineActorRepository extends EntityRepository implements ActorRepositor
     {
         return $this->findBy(['idactor' => $ids]);
     }
+
+    public function findAllActors(): array
+    {
+        return $this->findAll();
+    }
 }

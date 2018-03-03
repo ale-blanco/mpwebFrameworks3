@@ -27,3 +27,9 @@ actor_create:
   path: /actor/
   defaults: { _controller: \MyApp\Bundle\FilmBundle\Actor\Controller\CreateActorController::execute }
   methods: [POST]
+
+actor_list:
+  path: /actor/
+  defaults: { _controller: \MyApp\Bundle\FilmBundle\Actor\Controller\ListActorController::execute }
+  methods: [GET]
+

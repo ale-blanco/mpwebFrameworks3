@@ -9,4 +9,5 @@ interface ActorRepository
     public function save(Actor $actor): void;
     public function findOneByName(Actor $actor): ?Actor;
     public function findByIds(array $ids): array;
+    public function findAllActors(): array;
 }

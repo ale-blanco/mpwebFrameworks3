@@ -30,3 +30,7 @@ services:
   app.component.createActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\CreateActor
       arguments: ["@app.bundle.doctrineActorRepository"]
+
+  app.component.listActor:
+      class: MyApp\Component\Film\Application\CommandHandlers\Actor\ListActor
+      arguments: ["@app.bundle.doctrineActorRepository"]
