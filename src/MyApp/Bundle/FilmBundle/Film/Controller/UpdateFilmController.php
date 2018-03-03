@@ -26,7 +26,7 @@ class UpdateFilmController extends Controller
         } catch (ValidationException $ex) {
             throw new HttpException(400, json_encode(['error' => $ex->getMessage()]));
         } catch (\Exception $ex) {
-            throw new HttpException(500, json_encode(['error' => $ex->getMessage()]));
+            throw new HttpException(500, json_encode(['error' => 'Error']));
         }
 
         return new JsonResponse($filmCreated);

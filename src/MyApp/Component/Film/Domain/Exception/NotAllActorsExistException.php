@@ -2,7 +2,7 @@
 
 namespace MyApp\Component\Film\Domain\Exception;
 
-class NotAllActorsExistException extends \Exception implements ValidationException
+class NotAllActorsExistException extends ValidationException
 {
     public function __construct()
     {

@@ -2,8 +2,10 @@
 
 namespace MyApp\Bundle\FilmBundle\Actor\Repository;
 
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityRepository;
 use MyApp\Component\Film\Domain\Actor;
+use MyApp\Component\Film\Domain\Exception\ActorInFilmException;
 use MyApp\Component\Film\Domain\Repository\ActorRepository;
 
 class DoctrineActorRepository extends EntityRepository implements ActorRepository
@@ -28,5 +30,17 @@ class DoctrineActorRepository extends EntityRepository implements ActorRepositor
     public function findAllActors(): array
     {
         return $this->findAll();
+    }
+
+    public function deleteActor(string $id): void
+    {
+        $em = $this->getEntityManager();
+        $actor = $em->getReference('FilmBundle:Actor', $id);
+        try {
+            $em->remove($actor);
+            $em->flush();
+        } catch (ForeignKeyConstraintViolationException $ex) {
+            throw new ActorInFilmException();
+        }
     }
 }

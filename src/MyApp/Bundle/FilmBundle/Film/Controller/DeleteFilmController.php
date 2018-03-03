@@ -14,7 +14,7 @@ class DeleteFilmController extends Controller
         try {
             $this->get('app.component.deleteFilm')->__invoke(new DeleteFilmComm($id));
         } catch (\Exception $ex) {
-            throw new HttpException(500, json_encode(['error' => $ex->getMessage()]));
+            throw new HttpException(500, json_encode(['error' => 'Error']));
         }
 
         return new Response('', 200);

@@ -33,3 +33,9 @@ actor_list:
   defaults: { _controller: \MyApp\Bundle\FilmBundle\Actor\Controller\ListActorController::execute }
   methods: [GET]
 
+actor_delete:
+  path: /actor/{id}/
+  defaults: { _controller: \MyApp\Bundle\FilmBundle\Actor\Controller\DeleteActorController::execute }
+  methods: [DELETE]
+
+

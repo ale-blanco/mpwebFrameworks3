@@ -2,7 +2,7 @@
 
 namespace MyApp\Component\Film\Domain\Exception;
 
-class FilmNotExistException extends \Exception implements ValidationException
+class FilmNotExistException extends ValidationException
 {
     public function __construct()
     {

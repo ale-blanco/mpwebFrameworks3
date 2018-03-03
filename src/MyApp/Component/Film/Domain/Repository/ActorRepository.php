@@ -10,4 +10,5 @@ interface ActorRepository
     public function findOneByName(Actor $actor): ?Actor;
     public function findByIds(array $ids): array;
     public function findAllActors(): array;
+    public function deleteActor(string $id): void;
 }

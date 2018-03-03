@@ -34,3 +34,7 @@ services:
   app.component.listActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\ListActor
       arguments: ["@app.bundle.doctrineActorRepository"]
+
+  app.component.deleteActor:
+      class: MyApp\Component\Film\Application\CommandHandlers\Actor\DeleteActor
+      arguments: ["@app.bundle.doctrineActorRepository"]

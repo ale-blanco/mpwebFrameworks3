@@ -13,7 +13,7 @@ class ListFilmController extends Controller
         try {
             $films = $this->get('app.component.listFilm')->__invoke();
         } catch (\Exception $ex) {
-            throw new HttpException(500, json_encode(['error' => $ex->getMessage()]));
+            throw new HttpException(500, json_encode(['error' => 'Error']));
         }
 
         return new JsonResponse($films);
