@@ -17,6 +17,11 @@ film_list:
   defaults: { _controller: \MyApp\Bundle\FilmBundle\Film\Controller\ListFilmController::execute }
   methods: [GET]
 
+film_delete:
+  path: /film/{id}/
+  defaults: { _controller: \MyApp\Bundle\FilmBundle\Film\Controller\DeleteFilmController::execute }
+  methods: [DELETE]
+
 
 actor_create:
   path: /actor/

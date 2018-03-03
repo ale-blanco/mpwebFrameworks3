@@ -35,4 +35,12 @@ class DoctrineFilmRepository extends EntityRepository implements FilmRepository
     {
         return $this->findAll();
     }
+
+    public function deleteFilm(string $id): void
+    {
+        $em = $this->getEntityManager();
+        $film = $em->getReference('FilmBundle:Film', $id);
+        $em->remove($film);
+        $em->flush();
+    }
 }

@@ -23,6 +23,10 @@ services:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\ListFilm
       arguments: ["@app.bundle.doctrineFilmRepository"]
 
+  app.component.deleteFilm:
+      class: MyApp\Component\Film\Application\CommandHandlers\Film\DeleteFilm
+      arguments: ["@app.bundle.doctrineFilmRepository"]
+
   app.component.createActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\CreateActor
       arguments: ["@app.bundle.doctrineActorRepository"]

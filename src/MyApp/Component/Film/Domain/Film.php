@@ -31,13 +31,14 @@ class Film implements \JsonSerializable
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(string $name): Film
     {
         if ($name == '') {
             throw new FilmNameNotValidException();
         }
 
         $this->name = $name;
+        return $this;
     }
 
     public function getDescription(): string
@@ -45,13 +46,14 @@ class Film implements \JsonSerializable
         return $this->description;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(string $description): Film
     {
         if ($description == '') {
             throw new FilmDescriptionNotValidException();
         }
 
         $this->description = $description;
+        return $this;
     }
 
     public function getActors(): ArrayCollection
@@ -59,7 +61,7 @@ class Film implements \JsonSerializable
         return $this->actors;
     }
 
-    public function setActors(array $actors): void
+    public function setActors(array $actors): Film
     {
         foreach ($actors as $actor) {
             if (!$actor instanceof Actor) {
@@ -68,6 +70,7 @@ class Film implements \JsonSerializable
         }
 
         $this->actors = new ArrayCollection($actors);
+        return $this;
     }
 
     public function jsonSerialize()

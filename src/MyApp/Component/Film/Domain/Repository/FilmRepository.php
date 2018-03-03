@@ -10,4 +10,5 @@ interface FilmRepository
     public function findByName(Film $film): array;
     public function findOneByIdOrException(string $id): Film;
     public function findAllFilms(): array;
+    public function deleteFilm(string $id): void;
 }
