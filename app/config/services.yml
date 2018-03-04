@@ -46,3 +46,9 @@ services:
   app.component.listOneActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\ListOneActor
       arguments: ["@app.bundle.doctrineActorRepository"]
+
+  app.locale_listener:
+      class: MyApp\Bundle\FilmBundle\EventsListener\LocaleListener
+      arguments: ['%kernel.default_locale%']
+      tags:
+          - { name: kernel.event_subscriber }
