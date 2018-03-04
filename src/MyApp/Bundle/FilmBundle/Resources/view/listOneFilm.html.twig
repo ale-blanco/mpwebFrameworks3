@@ -1,0 +1,6 @@
+<h1>Nombre: {{ film.getName }}</h1>
+<h3>Descripcion: {{ film.getDescription }}</h3>
+<h4>Actores:</h4>
+{%  for actor in film.getActors %}
+    <a>Nombre: <a href="{{ url('actor_listOne', {'id': actor.getIdactor}) }}">{{ actor.getName }}</a></p>
+{% endfor %}

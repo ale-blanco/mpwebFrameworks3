@@ -27,6 +27,10 @@ services:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\DeleteFilm
       arguments: ["@app.bundle.doctrineFilmRepository"]
 
+  app.component.listOneFilm:
+      class: MyApp\Component\Film\Application\CommandHandlers\Film\ListOneFilm
+      arguments: ["@app.bundle.doctrineFilmRepository"]
+
   app.component.createActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\CreateActor
       arguments: ["@app.bundle.doctrineActorRepository"]
@@ -37,4 +41,8 @@ services:
 
   app.component.deleteActor:
       class: MyApp\Component\Film\Application\CommandHandlers\Actor\DeleteActor
+      arguments: ["@app.bundle.doctrineActorRepository"]
+
+  app.component.listOneActor:
+      class: MyApp\Component\Film\Application\CommandHandlers\Actor\ListOneActor
       arguments: ["@app.bundle.doctrineActorRepository"]

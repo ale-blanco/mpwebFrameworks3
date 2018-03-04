@@ -6,6 +6,7 @@ use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityRepository;
 use MyApp\Component\Film\Domain\Actor;
 use MyApp\Component\Film\Domain\Exception\ActorInFilmException;
+use MyApp\Component\Film\Domain\Exception\ActorNotExistException;
 use MyApp\Component\Film\Domain\Repository\ActorRepository;
 
 class DoctrineActorRepository extends EntityRepository implements ActorRepository
@@ -42,5 +43,15 @@ class DoctrineActorRepository extends EntityRepository implements ActorRepositor
         } catch (ForeignKeyConstraintViolationException $ex) {
             throw new ActorInFilmException();
         }
+    }
+
+    public function findOneByIdOrException(string $id): Actor
+    {
+        $actor = $this->findOneBy(['idactor' => $id]);
+        if ($actor == null) {
+            throw new ActorNotExistException();
+        }
+
+        return $actor;
     }
 }

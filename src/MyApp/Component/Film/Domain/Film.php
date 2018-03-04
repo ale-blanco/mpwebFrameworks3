@@ -56,7 +56,7 @@ class Film implements \JsonSerializable
         return $this;
     }
 
-    public function getActors(): ArrayCollection
+    public function getActors()
     {
         return $this->actors;
     }
