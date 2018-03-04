@@ -14,7 +14,7 @@ class CreateFilmCommand extends ContainerAwareCommand
     {
         $this
             ->setName('film:create')
-            ->setDescription('Crea una nueva pelicula')
+            ->setDescription('Create a film')
             ->addArgument('name', InputArgument::REQUIRED)
             ->addArgument('description', InputArgument::REQUIRED)
             ->addArgument('actors', InputArgument::REQUIRED, 'Ids separados por comas')

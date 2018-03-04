@@ -12,7 +12,7 @@ class ListFilmCommand extends ContainerAwareCommand
     {
         $this
             ->setName('film:list')
-            ->setDescription('Lista las peliculas guardadas')
+            ->setDescription('List all films')
         ;
     }
 

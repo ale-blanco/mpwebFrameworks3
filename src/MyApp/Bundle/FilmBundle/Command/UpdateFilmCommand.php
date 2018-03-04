@@ -14,7 +14,7 @@ class UpdateFilmCommand extends ContainerAwareCommand
     {
         $this
             ->setName('film:update')
-            ->setDescription('Actualiza una pelicula')
+            ->setDescription('Update a film')
             ->addArgument('id', InputArgument::REQUIRED)
             ->addArgument('name', InputArgument::REQUIRED)
             ->addArgument('description', InputArgument::REQUIRED)

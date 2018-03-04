@@ -14,7 +14,7 @@ class DeleteFilmCommand extends ContainerAwareCommand
     {
         $this
             ->setName('film:delete')
-            ->setDescription('Elimina una pelicula')
+            ->setDescription('Delete a film')
             ->addArgument('id', InputArgument::REQUIRED)
         ;
     }
@@ -22,7 +22,7 @@ class DeleteFilmCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $command = new DeleteFilmComm($input->getArgument('id'));
-        $film = $this->getContainer()->get('app.component.deleteFilm')->__invoke($command);
-        $output->writeln('Done');
+        $this->getContainer()->get('app.component.deleteFilm')->__invoke($command);
+        $output->writeln('Deleted');
     }
 }
