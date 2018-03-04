@@ -2,5 +2,5 @@
 <h3>{{ 'app.description' | trans }}: {{ film.getDescription }}</h3>
 <h4>{{ 'app.actors' | trans }}:</h4>
 {%  for actor in film.getActors %}
-    <a>{{ 'app.name' | trans }}: <a href="{{ url('actor_listOne', {'id': actor.getIdactor}) }}">{{ actor.getName }}</a></p>
+    <p>{{ 'app.name' | trans }}: <a href="{{ url('actor_listOne', {'id': actor.getIdactor}) }}">{{ actor.getName }}</a></p>
 {% endfor %}

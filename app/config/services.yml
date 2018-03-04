@@ -11,21 +11,30 @@ services:
       factory: ["@doctrine.orm.entity_manager", getRepository]
       arguments: ["FilmBundle:Actor"]
 
+  app.fileCache:
+      class: Doctrine\Common\Cache\FilesystemCache
+      arguments: ['%kernel.root_dir%/../var/temp/']
+
+  app.cacheFilmRepository:
+      class:     MyApp\Bundle\FilmBundle\Film\Repository\CacheFilmRepository
+      decorates: app.bundle.doctrineFilmRepository
+      arguments: ['@app.cacheFilmRepository.inner', '@app.fileCache']
+
   app.component.createFilm:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\CreateFilm
-      arguments: ["@app.bundle.doctrineFilmRepository", "@app.bundle.doctrineActorRepository"]
+      arguments: ["@app.cacheFilmRepository.inner", "@app.bundle.doctrineActorRepository"]
 
   app.component.updateFilm:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\UpdateFilm
-      arguments: ["@app.bundle.doctrineFilmRepository", "@app.bundle.doctrineActorRepository"]
+      arguments: ["@app.cacheFilmRepository.inner", "@app.bundle.doctrineActorRepository"]
 
   app.component.listFilm:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\ListFilm
-      arguments: ["@app.bundle.doctrineFilmRepository"]
+      arguments: ["@app.cacheFilmRepository.inner"]
 
   app.component.deleteFilm:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\DeleteFilm
-      arguments: ["@app.bundle.doctrineFilmRepository"]
+      arguments: ["@app.cacheFilmRepository.inner"]
 
   app.component.listOneFilm:
       class: MyApp\Component\Film\Application\CommandHandlers\Film\ListOneFilm
@@ -52,3 +61,11 @@ services:
       arguments: ['%kernel.default_locale%']
       tags:
           - { name: kernel.event_subscriber }
+
+  my.listener:
+      class: MyApp\Bundle\FilmBundle\EventsListener\PostPersistListener
+      arguments: ['@app.fileCache']
+      tags:
+          - { name: doctrine.event_listener, event: postPersist }
+          - { name: doctrine.event_listener, event: postRemove }
+          - { name: doctrine.event_listener, event: postUpdate }
